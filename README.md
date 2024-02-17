@@ -1,7 +1,11 @@
-MEET APP
+**MEET APP**
 
-PROJECT FEATURES AND SCENARIOS
+**WHAT IT IS:**
+A serverless, progressive web application (PWA) built with React using a
+test-driven development (TDD) technique. The application uses the Google
+Calendar API to fetch upcoming events.
 
+**PROJECT FEATURES AND SCENARIOS:**
 **Feature 1: Filter Events by City**
 User Story: As a user, I should be able to filter events by city so that I can see a list of events taking place in that city.
 
