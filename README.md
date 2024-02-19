@@ -92,3 +92,8 @@ User Story: As a user, I should be able to display charts visualizing event deta
 - Given: The app is open;
 - When: the user views the main page;
 - Then: a chart should display the number of upcoming events in each city.
+
+
+**Serverless Functions**
+
+The Meet app utilizes serverless functions in the business logic layer - handling the authorization for access to public calendar events from the Google Calendar API. As the OAuth consumer, the serverless functions will request OAuth consent from the authorization server, which prompts the user to login and grant consent. Upon consent the authorization server will generate a token that the Meet app will send along with every request in order to fetch and display event data for the user. AWS Lambda is used to host and implement these serverless functions.
