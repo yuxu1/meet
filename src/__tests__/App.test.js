@@ -26,11 +26,16 @@ describe('<App /> component', () => {
 });
 
 describe('<App /> integration', () => {
-  test('renders a list of events matching the city selected by the user', async () => {
-    const user = userEvent.setup();
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
+  let user;
+  let AppComponent;
+  let AppDOM;
+  beforeEach(() => {
+    user = userEvent.setup();
+    AppComponent = render(<App />);
+    AppDOM = AppComponent.container.firstChild;
+  })
 
+  test('renders a list of events matching the city selected by the user', async () => {
     const CitySearchDOM = AppDOM.querySelector('#city-search');
     const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
@@ -55,5 +60,18 @@ describe('<App /> integration', () => {
     allRenderedEventItems.forEach(event => {
       expect(event.textContent).toContain("Berlin, Germany");
     });
+  });
+
+  test('render the correct number of events based on user inputted value in "number of events" field', async () => {
+   const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+   const NumberOfEventsInput = within(NumberOfEventsDOM).queryByRole('spinbutton');
+  //simulate user pressing backspace twice to erase "32" and typing "10"
+   await user.type(NumberOfEventsInput, '{backspace}{backspace}10');
+   const EventListDOM = AppDOM.querySelector('#event-list');
+   const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
+   
+   //rendered events list should include 10 events
+   expect(allRenderedEventItems.length).toBe(10);
+   
   });
 })
