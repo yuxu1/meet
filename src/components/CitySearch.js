@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
   //hide suggestions by default unless input field is "in focus"
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
+  //ensure local suggestions state is updated based on changes in allLocations prop
+  useEffect(() => {
+    setSuggestions(allLocations);
+  }, [`${allLocations}`]);
 
   //when input changes,filter allLocations by the input value
   const handleInputChanged = (event) => {
@@ -21,6 +26,7 @@ const CitySearch = ({ allLocations }) => {
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false); //hide suggestions list
+    setCurrentCity(value);
   };
 
   return (
