@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 const CitySearch = ({ allLocations, setCurrentCity }) => {
@@ -9,7 +10,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
   //ensure local suggestions state is updated based on changes in allLocations prop
   useEffect(() => {
     setSuggestions(allLocations);
-  }, [`${allLocations}`]);
+  }, [`${allLocations}`]); //compare string representations of arrays, not memory references
 
   //when input changes,filter allLocations by the input value
   const handleInputChanged = (event) => {

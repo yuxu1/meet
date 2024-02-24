@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import mockData from './mock-data';
 
 /**
@@ -90,7 +91,7 @@ const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   //use encoded code in request (use Lambda function- getAccessToken endpoint)
   const response = await fetch(
-    'Yhttps://co1ntr87cj.execute-api.us-west-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+    'https://co1ntr87cj.execute-api.us-west-1.amazonaws.com/dev/api/token' + '/' + encodeCode
   );
   const { access_token } = await response.json();
   access_token && localStorage.setItem("access_token", access_token);
