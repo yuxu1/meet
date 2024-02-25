@@ -57,8 +57,8 @@ User Story: As a user, I should be able to specify the number of events shown so
 - Then: 32 events should be displayed.
   
 **Scenario 2:** User can change the number of events displayed.
-- Given: The user has specified the number of events (e.g., 10);
-- When: the events page is open;
+- Given: The events page is open;
+- When: the user has specified the number of events (e.g., 10);
 - Then: the specified number of events (i.e.,10) will be displayed.
 
 **Feature 4: Use the App When Offline**
