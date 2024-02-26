@@ -1,8 +1,16 @@
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
 
   const handleInputUpdate = (event) => {
     const value = event.target.value;
-    setCurrentNOE(value);
+    let errorText;
+    //show errorAlert if entered value is not a positive number
+    if (value <= 0) {
+      errorText = 'Only positive numbers are allowed';
+    } else {
+      setCurrentNOE(value);
+      errorText = '';
+    }
+    setErrorAlert(errorText);
   };
 
   return (

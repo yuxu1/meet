@@ -8,7 +8,7 @@ import NumberOfEvents from '../components/NumberOfEvents';
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsComponent;
   beforeEach(() => {
-    NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => {}}/>);
+    NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => {}} setErrorAlert={() => {}}/>);
   });
 
   test('renders text input(for number of events)', () => {
