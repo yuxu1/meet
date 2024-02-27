@@ -19,3 +19,22 @@ console.error = (...args) => {
 }
 
 jest.setTimeout(30000);
+
+/* begin code to resolve testing error: "TypeError: window.ResizeObserver is not a constructor" */
+const { ResizeObserver } = window;
+
+beforeEach(() => {
+  //@ts-ignore
+  delete window.ResizeObserver;
+  window.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn(),
+  }));
+});
+
+afterEach(() => {
+  window.ResizeObserver = ResizeObserver;
+  jest.restoreAllMocks();
+});
+/* end of code to resolve testing error */
