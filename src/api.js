@@ -46,7 +46,12 @@ export const getEvents = async () => {
   if (window.location.href.startsWith('http://localhost')) {
     return mockData;
   }
-
+  //if user is offline, parse cached events for loading (saved when last online)
+  if (!navigator.onLine) {
+    const events = localStorage.getItem("lastEvents");
+    return events ? JSON.parse(events) : [];
+  }
+  //check for access token (if user is online)
   const token = await getAccessToken();
   //if token is found, make GET request to Google Calender API using Lambda functions-getCalendarEvents endpoint
   if (token) {
@@ -55,6 +60,8 @@ export const getEvents = async () => {
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
+      //save results from API to localStorage (for offline use)
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
       return result.events;
     } else return null; 
   }
