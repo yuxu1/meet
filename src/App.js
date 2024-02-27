@@ -4,7 +4,7 @@ import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import { useEffect, useState } from 'react';
 import { getEvents, extractLocations } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 import './App.css';
 
@@ -15,8 +15,15 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState('See all cities');
   const [infoAlert, setInfoAlert] = useState('');
   const [errorAlert, setErrorAlert] = useState('');
+  const [warningAlert, setWarningAlert] = useState('');
 
   useEffect(() => {
+    //if user is online, hide warning alert & display it if user is offline
+    if(navigator.onLine) {
+      setWarningAlert('');
+    } else {
+      setWarningAlert('No internet connection. Data may not be up to date.');
+    }
     fetchData();
   }, [currentCity, currentNOE]);
 
@@ -38,6 +45,7 @@ const App = () => {
         {/* render alerts if its state contains text; else hide */}
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert}/> : null}
       </div>
       <CitySearch
         allLocations={allLocations}
