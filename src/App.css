@@ -65,7 +65,8 @@ input[type="number"] {
   border-bottom-right-radius: 4px;
 }
 
-.suggestions > li:hover {
+.suggestions > li:hover,
+.suggestions > li:focus {
   background-color: #cac2fb;
   cursor: pointer;
 }
@@ -90,7 +91,8 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.details-button:hover {
+.details-button:hover,
+.details-button:focus {
   background-color: #5e5e5e;
   color: #ffffff;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
