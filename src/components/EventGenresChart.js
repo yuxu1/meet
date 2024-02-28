@@ -6,7 +6,7 @@ import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from 'recharts';
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
-  const colors = ['#b1a2f5', '#a2b9f5', '#a2e3f5', '#b8f5dc', '#deb8f5'];
+  const colors = ['#b1a2f5', '#a2b9f5', '#87d7ed', '#7edeb6', '#deb8f5'];
 
   useEffect(() => {
     setData(getData())
@@ -54,9 +54,9 @@ const EventGenresChart = ({ events }) => {
           label={renderCustomizedLabel}
           outerRadius={150}           
         >
-          {data.map((entry, index) => {
+          {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index]}/>
-          })}
+          ))}
         </Pie>
         <Legend height={36}/>
       </PieChart>
